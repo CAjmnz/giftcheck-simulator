@@ -9,6 +9,8 @@ class CreateLedgerEntryAction
 {
     public function execute($request)
     {
+        $request = (object) $request;
+
         $ledger = LedgerBudget::max('bledger_no') + 1;
 
         return LedgerBudget::create([

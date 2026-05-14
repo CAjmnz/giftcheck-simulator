@@ -2,25 +2,26 @@
 
 namespace App\Listeners;
 
-use App\Events\BudgetApproved;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Events\Budget\BudgetApproved;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class SendApprovalEmail
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
+    public function handle(BudgetApproved $event)
     {
-        //
-    }
+        $req = (object) $event->request;
 
-    /**
-     * Handle the event.
-     */
-    public function handle(BudgetApproved $event): void
-    {
-        //
+        $user = User::where('user_id', $req->br_id)->first();
+
+        if (!$user) return;
+
+        Mail::raw(
+            "Your budget request #{$req->br_id} has been approved.",
+            function ($message) use ($user) {
+                $message->to($user->email ?? 'test@example.com')
+                    ->subject('Budget Approved');
+            }
+        );
     }
 }

@@ -2,25 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\BudgetApproved;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Events\Budget\BudgetApproved;
+use App\Events\Budget\BudgetRequested;
+use App\Events\Budget\BudgetCancelled;
 
 class LogFinanceActivity
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
+    public function handle($event)
     {
-        //
-    }
-
-    /**
-     * Handle the event.
-     */
-    public function handle(BudgetApproved $event): void
-    {
-        //
+        // placeholder logging
     }
 }

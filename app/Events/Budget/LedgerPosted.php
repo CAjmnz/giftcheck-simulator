@@ -2,14 +2,12 @@
 
 namespace App\Events\Budget;
 
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
-
 class LedgerPosted
 {
-    use Dispatchable, SerializesModels;
+    public $ledger;
 
-    public function __construct(
-        public array $data = []
-    ) {}
+    public function __construct($ledger)
+    {
+        $this->ledger = $ledger;
+    }
 }

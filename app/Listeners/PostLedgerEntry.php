@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\BudgetApproved;
+use App\Events\Budget\BudgetApproved;
 use App\Actions\Budget\CreateLedgerEntryAction;
 
 class PostLedgerEntry
