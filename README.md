@@ -1,59 +1,236 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Readme · MD
+Copy
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="#"><img src="https://img.shields.io/badge/GiftCheck-Budget%20System-blue" alt="Project Badge"></a>
+<a href="#"><img src="https://img.shields.io/badge/API-Laravel%2012-red" alt="Laravel"></a>
+<a href="#"><img src="https://img.shields.io/badge/Architecture-Controller%20%2B%20Actions-green" alt="Architecture"></a>
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+ 
+## 📌 About This Project
+ 
+This project is a **Budget Approval System API** built on Laravel 12.
+It implements a clean backend workflow for:
+ 
+- Budget request approval
+- Ledger generation
+- Approval record tracking
+- PDF generation
+- Email notification
+### 🧠 Architecture Style
+ 
+- Controller → Actions → Database
+- No event system is used for stability and simplicity.
+---
+ 
+## 🚀 Features
+ 
+- ✔ Budget Approval API
+- ✔ Ledger Entry System
+- ✔ Approval Tracking
+- ✔ Automatic Ledger Numbering
+- ✔ PDF Generation (DomPDF)
+- ✔ Email Notification (SMTP / Mailtrap)
+- ✔ Clean Action-based architecture
+- ✔ Stable and production-ready flow
+---
+ 
+## 📡 API Endpoint
+ 
+### ▶ Approve Budget
+ 
+```http
+POST /api/budget/approve
+```
+ 
+**Request Body:**
+ 
+```json
+{
+  "br_id": 1,
+  "br_req": 5000,
+  "br_budtype": "OPEX",
+  "br_group": "Finance"
+}
+```
+ 
+**Response:**
+ 
+```json
+{
+  "success": true,
+  "message": "Budget approved successfully",
+  "data": {
+    "ledger": {
+      "bledger_no": "0000000000016",
+      "bledger_trid": 1,
+      "bledger_type": "RFBR",
+      "bdebit_amt": 5000
+    },
+    "approval": {
+      "abr_budget_request_id": 1,
+      "abr_ledgerefnum": "0000000000016"
+    }
+  }
+}
+```
+ 
+---
+ 
+## 🧱 Project Structure
+ 
+```
+app/
+├── Actions/
+│   └── Budget/
+│       ├── ApproveBudgetAction.php
+│       ├── CreateLedgerEntryAction.php
+│       └── GenerateApprovalPdfAction.php
+├── Http/
+│   └── Controllers/
+│       └── Api/
+│           └── BudgetController.php
+├── Models/
+│   ├── BudgetRequest.php
+│   ├── ApprovedBudgetRequest.php
+│   └── LedgerBudget.php
+├── Mail/
+│   └── BudgetApprovedMail.php
+```
+ 
+---
+ 
+## ⚙️ Installation
+ 
+**1. Clone repository**
+ 
+```bash
+git clone https://github.com/your-repo/giftcheck.git
+cd giftcheck
+```
+ 
+**2. Install dependencies**
+ 
+```bash
+composer install
+```
+ 
+**3. Environment setup**
+ 
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+ 
+**4. Configure database**
+ 
+```env
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+ 
+**5. Run migrations**
+ 
+```bash
+php artisan migrate
+```
+ 
+**6. Start server**
+ 
+```bash
+php artisan serve
+```
+ 
+---
+ 
+## 📄 PDF Feature
+ 
+Uses: `barryvdh/laravel-dompdf`
+ 
+Stored in: `storage/app/public/`
+ 
+---
+ 
+## 📧 Email Setup
+ 
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_FROM_ADDRESS=system@giftcheck.local
+MAIL_FROM_NAME="GiftCheck System"
+```
+ 
+---
+ 
+## 🧠 System Flow
+ 
+1. API receives request
+2. Controller validates input
+3. Ledger entry created
+4. Approval record saved
+5. PDF generated
+6. Email sent with attachment
+---
+ 
+## 🧾 Database Tables
+ 
+**budget_requests**
+| Column | Description |
+|---|---|
+| `br_id` | Primary key |
+| `br_req` | Request amount |
+| `br_budtype` | Budget type |
+| `br_group` | Budget group |
+ 
+**ledger_budgets**
+| Column | Description |
+|---|---|
+| `bledger_no` | Ledger number |
+| `bledger_trid` | Transaction reference ID |
+| `bdebit_amt` | Debit amount |
+| `bledger_type` | Ledger type |
+ 
+**approved_budget_requests**
+| Column | Description |
+|---|---|
+| `abr_budget_request_id` | Foreign key to budget request |
+| `abr_ledgerefnum` | Ledger reference number |
+| `abr_approved_by` | Approver name |
+| `abr_checked_by` | Checker name |
+ 
+---
+ 
+## 🔐 Design Rules
+ 
+- No event system
+- No listeners
+- Controller is single entry point
+- Actions handle business logic
+- Side effects are optional (PDF / email)
+---
+ 
+## 🧪 Testing
+ 
+```http
+POST http://127.0.0.1:8000/api/budget/approve
+```
+ 
+---
+ 
+## ⚡ Status
+ 
+- ✔ Stable API
+- ✔ Clean Architecture
+- ✔ Production Ready
+- ✔ Simplified Flow
+---
+ 
+## 📜 License
+ 
+This project is open-source and free to use.
+ 
