@@ -8,7 +8,7 @@ class BudgetPolicy
 {
     public static function canApprove($request): bool
     {
-        // Example rule from your FinanceService
+
         if ($request->br_request <= 0) {
             return false;
         }

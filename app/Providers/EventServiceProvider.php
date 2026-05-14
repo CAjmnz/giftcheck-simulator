@@ -18,23 +18,23 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
 
-        \App\Events\Budget\BudgetApproved::class => [
-            \App\Listeners\PostLedgerEntry::class,
-            \App\Listeners\GenerateApprovalPdf::class,
-            \App\Listeners\SendApprovalEmail::class,
-            \App\Listeners\LogFinanceActivity::class,
+        BudgetApproved::class => [
+            PostLedgerEntry::class,
+            GenerateApprovalPdf::class,
+            SendApprovalEmail::class,
+            LogFinanceActivity::class,
         ],
-    
-        \App\Events\Budget\BudgetRequested::class => [
-            \App\Listeners\LogFinanceActivity::class,
+
+        BudgetRequested::class => [
+            LogFinanceActivity::class,
         ],
-    
-        \App\Events\Budget\BudgetCancelled::class => [
-            \App\Listeners\LogFinanceActivity::class,
+
+        BudgetCancelled::class => [
+            LogFinanceActivity::class,
         ],
-    
-        \App\Events\Budget\LedgerPosted::class => [
-            \App\Listeners\LogFinanceActivity::class,
+
+        LedgerPosted::class => [
+            LogFinanceActivity::class,
         ],
     ];
 }
