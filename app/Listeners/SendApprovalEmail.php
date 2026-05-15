@@ -10,9 +10,10 @@ class SendApprovalEmail
 {
     public function handle(BudgetApproved $event)
     {
-        $req = (object) $event->request;
+        $req  = $event->request;
 
-        $user = User::where('user_id', $req->br_id)->first();
+        // ✅ get authenticated user, not by br_id
+        $user = User::where('id', optional($req->user())->id)->first();
 
         if (!$user) return;
 

@@ -5,9 +5,12 @@ use App\Http\Controllers\Api\BudgetController;
 use App\Http\Controllers\Api\AdjustmentController;
 
 Route::prefix('budget')->group(function () {
-     Route::get('/', function () {
 
-    }); 
+    Route::get('/', function () {
+        return response()->json([
+            'status' => 'API running'
+        ]);
+    });
 
     Route::post('/approve', [BudgetController::class, 'approve']);
     Route::post('/cancel', [BudgetController::class, 'cancel']);

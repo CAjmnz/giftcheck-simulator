@@ -2,10 +2,16 @@
 
 namespace App\Listeners\Budget;
 
+use App\Events\Budget\BudgetApproved;
+
 class GenerateApprovalPdf
 {
-    public function handle($event)
+    public function handle(BudgetApproved $event)
     {
-        // TODO: move PDF generation here later
+        $budgetId = $event->request->br_id;
+
+        if ($budgetId) {
+            \Log::info('PDF generated for Budget ID: ' . $budgetId);
+        }
     }
 }

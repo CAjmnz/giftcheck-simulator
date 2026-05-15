@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Adjustment;
 
 use App\Events\Adjustment\AdjustmentApproved;
 use App\Events\Adjustment\AdjustmentCancelled;

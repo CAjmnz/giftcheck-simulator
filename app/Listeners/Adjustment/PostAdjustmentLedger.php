@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Listeners;
-
-use App\Events\Adjustment\AdjustmentApproved;
-use App\Actions\Adjustment\CreateAdjustmentLedgerAction;
+namespace App\Listeners\Adjustment;
 
 class PostAdjustmentLedger
 {
-    public function handle(AdjustmentApproved $event)
+    public function handle($event)
     {
-        (new CreateAdjustmentLedgerAction())->execute($event->request);
+        // placeholder
     }
 }

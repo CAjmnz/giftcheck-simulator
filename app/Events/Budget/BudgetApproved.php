@@ -2,12 +2,19 @@
 
 namespace App\Events\Budget;
 
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+
 class BudgetApproved
 {
-    public $request;
+    use Dispatchable, SerializesModels;
 
-    public function __construct($request)
+    public $request;
+    public $ledgerNo;
+
+    public function __construct($request, $ledgerNo)
     {
-        $this->request = $request;
+        $this->request  = $request;
+        $this->ledgerNo = $ledgerNo;
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApprovedBudgetRequest extends Model
 {
+    protected $table = 'approved_budget_requests';
+
     protected $fillable = [
         'abr_budget_request_id',
         'abr_approved_by',

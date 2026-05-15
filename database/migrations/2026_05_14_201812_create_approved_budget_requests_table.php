@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('approved_budget_requests', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('abr_budget_request_id')->nullable();
             $table->string('abr_approved_by')->nullable();
             $table->string('abr_checked_by')->nullable();
@@ -17,7 +18,8 @@ return new class extends Migration
             $table->timestamp('abr_approved_at')->nullable();
             $table->string('abr_file_doc_no')->nullable();
             $table->unsignedBigInteger('abr_prepared_by')->nullable();
-            $table->integer('abr_ledgerefnum')->nullable();
+            $table->string('abr_ledgerefnum')->nullable();
+
             $table->timestamps();
         });
     }

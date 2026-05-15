@@ -2,10 +2,13 @@
 
 namespace App\Listeners\Budget;
 
+use App\Events\Budget\BudgetApproved;
+
 class PostLedgerEntry
 {
-    public function handle($event)
+    public function handle(BudgetApproved $event)
     {
-        // reserved for future ledger side-effects
+        // ledger already created in controller
+        return;
     }
 }
